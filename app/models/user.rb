@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   include Uid
 
+  validates :name, presence: true
+
   has_many :fixed_expenses
   has_many :fixed_expense_categories
   has_many :unexpected_expenses

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: fixed_expense_categories
@@ -12,7 +14,7 @@
 class FixedExpenseCategory < ApplicationRecord
   include Uid
 
-  has_many :fixed_expenses
+  has_many :fixed_expenses, dependent: :destroy
 
-  belongs_to :user
+  belongs_to :user, dependent: :destroy
 end

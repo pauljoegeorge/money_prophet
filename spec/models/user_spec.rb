@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -8,14 +10,14 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe User, type: :model do
   let(:normal_user) { create(:user, :with_fixed_expenses) }
 
   it "is valid with a name" do
     user = User.new(
-      name: "joe",
+      name: "joe"
     )
     expect(user).to be_valid
   end

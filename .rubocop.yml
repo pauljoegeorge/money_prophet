@@ -1,0 +1,22 @@
+require: rubocop-rails
+
+AllCops:
+  Exclude:
+    - "db/**/*"
+    - "config/**/*"
+    - "app/channels/**/*"
+    - "app/views/**/*"
+    - "lib/**/*"
+    - "log/**/*"
+    - "script/**/*"
+    - "policy/*"
+    - "tmp/**/*"
+    - "bin/*"
+    - "config.ru"
+    - "Rakefile"
+    - spec/rails_helper.rb
+
+Style/Documentation:
+  Enabled: false
+StringLiterals:
+  EnforcedStyle: double_quotes

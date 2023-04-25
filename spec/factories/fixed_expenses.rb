@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: fixed_expenses
@@ -13,7 +15,7 @@
 #
 FactoryBot.define do
   factory :fixed_expense do
-    apply_from { Date.today.beginning_of_month }
+    apply_from { Time.zone.today.beginning_of_month }
     amount { 0 }
     association :user
     association :fixed_expense_category

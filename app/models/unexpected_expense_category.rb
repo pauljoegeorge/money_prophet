@@ -14,7 +14,7 @@
 class UnexpectedExpenseCategory < ApplicationRecord
   include Uid
 
-  has_many :unexpected_expenses, dependent: :destroy
+  has_many :unexpected_expenses, dependent: :nullify
 
-  belongs_to :user, dependent: :destroy
+  belongs_to :user
 end

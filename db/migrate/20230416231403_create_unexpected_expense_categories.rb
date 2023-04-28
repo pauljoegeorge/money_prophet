@@ -3,11 +3,14 @@ class CreateUnexpectedExpenseCategories < ActiveRecord::Migration[7.0]
     create_table :unexpected_expense_categories do |t|
       t.string :uid, null: false, default: ""
       t.string :name, null: false, default: ""
-      t.index :name, unique: true
+
+      t.references :user, null: false, foreign_key: true
+
+      t.index [:name, :user_id], unique: true
       t.index :uid, unique: true
+
       t.timestamps
     end
-    add_reference :unexpected_expense_categories, :user, null: false, foreign_key: true
   end
 
   def down

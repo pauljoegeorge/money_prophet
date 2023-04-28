@@ -14,10 +14,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_16_232221) do
   create_table "fixed_expense_categories", charset: "utf8mb4", force: :cascade do |t|
     t.string "uid", default: "", null: false
     t.string "name", default: "", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
-    t.index ["name"], name: "index_fixed_expense_categories_on_name", unique: true
+    t.index ["name", "user_id"], name: "index_fixed_expense_categories_on_name_and_user_id", unique: true
     t.index ["uid"], name: "index_fixed_expense_categories_on_uid", unique: true
     t.index ["user_id"], name: "index_fixed_expense_categories_on_user_id"
   end
@@ -38,10 +38,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_16_232221) do
   create_table "unexpected_expense_categories", charset: "utf8mb4", force: :cascade do |t|
     t.string "uid", default: "", null: false
     t.string "name", default: "", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
-    t.index ["name"], name: "index_unexpected_expense_categories_on_name", unique: true
+    t.index ["name", "user_id"], name: "index_unexpected_expense_categories_on_name_and_user_id", unique: true
     t.index ["uid"], name: "index_unexpected_expense_categories_on_uid", unique: true
     t.index ["user_id"], name: "index_unexpected_expense_categories_on_user_id"
   end

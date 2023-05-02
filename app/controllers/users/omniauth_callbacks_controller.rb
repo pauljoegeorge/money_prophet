@@ -14,7 +14,7 @@ module Users
 
     def sign_in_and_render_json_response
       sign_in(@user, event: :authentication, bypass: true)
-      token = ::JsonWebToken.encode(user_id: @user.id)
+      token = JsonWebToken.encode(user_id: @user.id)
       render json: { message: "Signed in successfully", token: token }
     end
 

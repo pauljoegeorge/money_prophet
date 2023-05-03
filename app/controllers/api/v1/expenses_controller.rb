@@ -10,6 +10,8 @@ module Api
                status: :ok
       end
 
+      def update; end
+
       private
 
       def index_params
@@ -21,7 +23,7 @@ module Api
       def validate!
         return true if params[:from]
 
-        render json: {}, status: :unprocessable_entity
+        json_response({}, :unprocessable_entity)
       end
     end
   end

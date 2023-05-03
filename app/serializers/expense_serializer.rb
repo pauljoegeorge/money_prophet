@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ExpenseSerializer < ActiveModel::Serializer
   def initialize(user, options = {})
     super

@@ -1,0 +1,16 @@
+current directory: /Users/pj/Documents/projects/money_prophet/vender/bundle/ruby/3.0.0/gems/bootsnap-1.16.0/ext/bootsnap
+/Users/pj/.rbenv/versions/3.0.1/bin/ruby -I /Users/pj/.rbenv/versions/3.0.1/lib/ruby/3.0.0 -r ./siteconf20230503-30929-ulbl56.rb extconf.rb
+creating Makefile
+
+current directory: /Users/pj/Documents/projects/money_prophet/vender/bundle/ruby/3.0.0/gems/bootsnap-1.16.0/ext/bootsnap
+make DESTDIR\= clean
+
+current directory: /Users/pj/Documents/projects/money_prophet/vender/bundle/ruby/3.0.0/gems/bootsnap-1.16.0/ext/bootsnap
+make DESTDIR\=
+compiling bootsnap.c
+linking shared-object bootsnap/bootsnap.bundle
+ld: warning: -undefined dynamic_lookup may not work with chained fixups
+
+current directory: /Users/pj/Documents/projects/money_prophet/vender/bundle/ruby/3.0.0/gems/bootsnap-1.16.0/ext/bootsnap
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 bootsnap.bundle ./.gem.20230503-30929-laa00n/bootsnap

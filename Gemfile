@@ -40,7 +40,6 @@ gem "bootsnap", require: false
 gem "active_model_serializers"
 gem "bcrypt", "~> 3.1.7"
 gem "devise"
-gem "dotenv-rails", "~> 2.7.6"
 gem "omniauth"
 gem "omniauth-google-oauth2"
 gem "omniauth-rails_csrf_protection"
@@ -54,6 +53,7 @@ group :development, :test do
   gem "pry-rails"
   gem "rspec-rails"
   gem "rubocop-rails", require: false
+  gem "dotenv-rails", "~> 2.7.6"
 end
 
 group :development do

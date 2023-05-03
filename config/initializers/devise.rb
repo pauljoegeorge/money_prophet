@@ -264,7 +264,7 @@ Devise.setup do |config|
   #
   # The "*/*" below is required to match Internet Explorer requests.
   # config.navigational_formats = ['*/*', :html, :turbo_stream]
-  config.navigational_formats = [:json]
+  # config.navigational_formats = [:json]
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
 
@@ -317,7 +317,8 @@ Devise.setup do |config|
     prompt: "select_account",
     image_aspect_ratio: "square",
     image_size: 50,
-    redirect_uri: "http://127.0.0.1:3000/users/auth/google_oauth2/callback",
-    provider_ignores_state: Rails.env.development?
+    # redirect_uri: "http://127.0.0.1:3000/users/auth/google_oauth2/callback",
+    # provider_ignores_state: Rails.env.development?
   }
+  config.navigational_formats = ["*/*", :html, :json]
 end

@@ -36,10 +36,10 @@ class User < ApplicationRecord
   has_many :unexpected_expense_categories, dependent: :destroy
 
   def self.from_omniauth(response)
-    where(uid: response[:uid]).first_or_create do |u|
-      u.uid = response[:uid]
-      u.name = response[:info][:email]
-      u.email = response[:info][:email]
+    where(uid: response["id"]).first_or_create do |u|
+      u.uid = response["id"]
+      u.name = response["name"]
+      u.email = response["email"]
       u.password = SecureRandom.hex(15)
     end
   end

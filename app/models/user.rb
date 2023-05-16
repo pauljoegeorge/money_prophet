@@ -18,9 +18,6 @@
 #  uqid                   :string(255)      not null
 #
 class User < ApplicationRecord
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :trackable, :omniauthable,
-         omniauth_providers: [:google_oauth2]
   has_secure_password
 
   attr_accessor :password_digest

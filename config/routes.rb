@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  devise_for :users
-
   namespace :api do
     namespace :v1 do
       get '/auth/google', to: 'auth/google/oauth#google_auth'

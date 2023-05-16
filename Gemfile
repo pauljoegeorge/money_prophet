@@ -39,10 +39,8 @@ gem "bootsnap", require: false
 # gem "rack-cors"
 gem "active_model_serializers"
 gem "bcrypt", "~> 3.1.7"
-gem "devise"
-gem "omniauth"
-gem "omniauth-google-oauth2"
-gem "omniauth-rails_csrf_protection"
+gem "faraday"
+gem "jwt"
 gem "rack-cors"
 
 group :development, :test do

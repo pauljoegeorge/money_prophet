@@ -19,7 +19,6 @@ module Api
             @user = User.from_omniauth(user_info)
             return unless @user.persisted?
 
-            bypass_sign_in(@user)
             token = JsonWebToken.encode(user_id: @user.id)
             render json: { token: token }
           end

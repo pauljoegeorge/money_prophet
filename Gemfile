@@ -2,9 +2,9 @@
 
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
-
 ruby "3.0.1"
 
+gem "bundler", "~> 2.2"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4", ">= 7.0.4.3"
 
@@ -37,12 +37,10 @@ gem "bootsnap", require: false
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem "rack-cors"
+gem "active_model_serializers"
 gem "bcrypt", "~> 3.1.7"
-gem "devise"
-gem "dotenv-rails", "~> 2.7.6"
-gem "omniauth"
-gem "omniauth-google-oauth2"
-gem "omniauth-rails_csrf_protection"
+gem "faraday"
+gem "jwt"
 gem "rack-cors"
 
 group :development, :test do
@@ -53,6 +51,7 @@ group :development, :test do
   gem "pry-rails"
   gem "rspec-rails"
   gem "rubocop-rails", require: false
+  gem "dotenv-rails", "~> 2.7.6"
 end
 
 group :development do

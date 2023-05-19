@@ -13,20 +13,6 @@
 #  fixed_expense_category_id :bigint           not null
 #  user_id                   :bigint           not null
 #
-class FixedExpense < ApplicationRecord
-  include Uid
-
-  belongs_to :fixed_expense_category
-  belongs_to :user
-
-  accepts_nested_attributes_for :fixed_expense_category
-
-  delegate :name, to: :fixed_expense_category
-
-  scope :of_month, lambda { |date|
-    where("apply_from <= ?", date.beginning_of_month)
-      .order(fixed_expense_category_id: :asc, apply_from: :desc)
-      .group_by(&:fixed_expense_category_id)
-      .map { |_, records| records.first }
-  }
+class FixedExpenseSerializer < ActiveModel::Serializer
+  attributes :amount, :name
 end

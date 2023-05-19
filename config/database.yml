@@ -50,6 +50,10 @@ test:
 #
 production:
   <<: *default
-  database: money_prophet_production
-  username: money_prophet
-  password: <%= ENV["MONEY_PROPHET_DATABASE_PASSWORD"] %>
+  database: <%= ENV["DATABASE_NAME"] %>
+  username: <%= ENV["DATABASE_USERNAME"] %>
+  password: <%= ENV["DATABASE_PASSWORD"] %>
+  host: <%= ENV["DATABASE_HOST"] %>
+  port: 3306
+  pool: <%= ENV["RAILS_MAX_THREADS"] || 5 %>
+  timeout: 5000

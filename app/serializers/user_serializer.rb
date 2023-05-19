@@ -17,27 +17,6 @@
 #  password_digest        :string(255)
 #  uqid                   :string(255)      not null
 #
-class User < ApplicationRecord
-  has_secure_password
-
-  attr_accessor :password_digest
-
-  include Uqid
-
-  validates :name, presence: true
-  validates :uid, presence: true, uniqueness: true
-
-  has_many :fixed_expenses, dependent: :destroy
-  has_many :fixed_expense_categories, dependent: :destroy
-  has_many :unexpected_expenses, dependent: :destroy
-  has_many :unexpected_expense_categories, dependent: :destroy
-
-  def self.from_omniauth(response)
-    where(uid: response["id"]).first_or_create do |u|
-      u.uid = response["id"]
-      u.name = response["name"]
-      u.email = response["email"]
-      u.password = SecureRandom.hex(15)
-    end
-  end
+class UserSerializer < ActiveModel::Serializer
+  attributes :name
 end

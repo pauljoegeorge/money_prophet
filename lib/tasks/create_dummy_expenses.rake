@@ -1,8 +1,7 @@
-# RUN: rake "user:create_expenses #{user_id}"
+# RUN: rake "user:create_expenses[#{user_id}]"
 namespace :user do
   desc "create dummy expenses"
   task :create_expenses, [:user_id] => :environment do |a, args|
-    binding.pry
     user = User.find(args[:user_id])
     next if user.blank?
     next if user.fixed_expenses.where(apply_from: Time.zone.today.beginning_of_month).present?
@@ -27,5 +26,18 @@ namespace :user do
         unexpected_expense_category: category
       )
     end
+  end
+
+  task :create_income, [:user_id] => :environment do |a, args|
+    user = User.find(args[:user_id])
+    next if user.blank?
+    next if user.incomes.where(apply_from: Time.zone.today.beginning_of_month).present?
+
+    source = user.income_sources.find_or_create_by(source: "salary")
+    user.incomes.create(
+      amount: 1000 * (user.id + 1),
+      apply_from: Time.zone.today.beginning_of_month,
+      income_source: source
+    )
   end
 end

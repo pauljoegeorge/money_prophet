@@ -31,6 +31,8 @@ class User < ApplicationRecord
   has_many :fixed_expense_categories, dependent: :destroy
   has_many :unexpected_expenses, dependent: :destroy
   has_many :unexpected_expense_categories, dependent: :destroy
+  has_many :incomes, dependent: :destroy
+  has_many :income_sources, dependent: :destroy
 
   def self.from_omniauth(response)
     where(uid: response["id"]).first_or_create do |u|

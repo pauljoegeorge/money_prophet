@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_01_014229) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_19_131133) do
   create_table "fixed_expense_categories", charset: "utf8mb4", force: :cascade do |t|
     t.string "uid", default: "", null: false
     t.string "name", default: "", null: false
@@ -33,6 +33,30 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_01_014229) do
     t.index ["fixed_expense_category_id"], name: "index_fixed_expenses_on_fixed_expense_category_id"
     t.index ["uid"], name: "index_fixed_expenses_on_uid", unique: true
     t.index ["user_id"], name: "index_fixed_expenses_on_user_id"
+  end
+
+  create_table "income_sources", charset: "utf8mb4", force: :cascade do |t|
+    t.string "uid", default: "", null: false
+    t.string "source", default: "", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["source", "user_id"], name: "index_income_sources_on_source_and_user_id", unique: true
+    t.index ["uid"], name: "index_income_sources_on_uid", unique: true
+    t.index ["user_id"], name: "index_income_sources_on_user_id"
+  end
+
+  create_table "incomes", charset: "utf8mb4", force: :cascade do |t|
+    t.string "uid", default: "", null: false
+    t.date "apply_from", null: false
+    t.integer "amount", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "income_source_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["income_source_id"], name: "index_incomes_on_income_source_id"
+    t.index ["uid"], name: "index_incomes_on_uid", unique: true
+    t.index ["user_id"], name: "index_incomes_on_user_id"
   end
 
   create_table "unexpected_expense_categories", charset: "utf8mb4", force: :cascade do |t|
@@ -79,6 +103,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_01_014229) do
   add_foreign_key "fixed_expense_categories", "users"
   add_foreign_key "fixed_expenses", "fixed_expense_categories"
   add_foreign_key "fixed_expenses", "users"
+  add_foreign_key "income_sources", "users"
+  add_foreign_key "incomes", "income_sources"
+  add_foreign_key "incomes", "users"
   add_foreign_key "unexpected_expense_categories", "users"
   add_foreign_key "unexpected_expenses", "unexpected_expense_categories"
   add_foreign_key "unexpected_expenses", "users"

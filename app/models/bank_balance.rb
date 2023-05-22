@@ -16,7 +16,6 @@ class BankBalance < ApplicationRecord
 
       while start_date <= end_date
         balance += user.savings_of_month(start_date)
-        # record = user.bank_balances.find_by(date: start_date)
         user.bank_balances.create(amount: balance, date: start_date)
 
         start_date = start_date.next_month.at_beginning_of_month

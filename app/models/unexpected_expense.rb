@@ -26,4 +26,8 @@ class UnexpectedExpense < ApplicationRecord
   scope :of_month, lambda { |date|
     where(apply_in: date.beginning_of_month)
   }
+
+  scope :total_of_month, lambda { |month|
+    of_month(month).map(&:amount).sum || 0
+  }
 end

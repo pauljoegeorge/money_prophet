@@ -33,6 +33,7 @@ class User < ApplicationRecord
   has_many :unexpected_expense_categories, dependent: :destroy
   has_many :incomes, dependent: :destroy
   has_many :income_sources, dependent: :destroy
+  has_many :bank_balances, dependent: :destroy
 
   def self.from_omniauth(response)
     where(uid: response["id"]).first_or_create do |u|
@@ -41,5 +42,11 @@ class User < ApplicationRecord
       u.email = response["email"]
       u.password = SecureRandom.hex(15)
     end
+  end
+
+  def savings_of_month(date)
+    income = incomes.total_of_month(date)
+    expenses = fixed_expenses.total_of_month(date) + unexpected_expenses.total_of_month(date)
+    income - expenses
   end
 end

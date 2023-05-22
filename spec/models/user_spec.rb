@@ -24,7 +24,9 @@ RSpec.describe User, type: :model do
 
   it "is valid with a name" do
     user = User.new(
-      name: "joe"
+      name: "joe",
+      password: SecureRandom.uuid,
+      uid: SecureRandom.uuid
     )
     expect(user).to be_valid
   end

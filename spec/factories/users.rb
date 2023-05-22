@@ -20,6 +20,9 @@
 FactoryBot.define do
   factory :user do
     name { Faker::Name.name }
+    password { SecureRandom.uuid }
+    uid { SecureRandom.uuid }
+    uqid { SecureRandom.uuid }
   end
 
   trait :with_fixed_expenses do

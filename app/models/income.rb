@@ -27,4 +27,8 @@ class Income < ApplicationRecord
       .group_by(&:income_source_id)
       .map { |_, records| records.first }
   }
+
+  scope :total_of_month, lambda { |month|
+    of_month(month).map(&:amount).sum || 0
+  }
 end

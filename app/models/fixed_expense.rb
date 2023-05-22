@@ -29,4 +29,16 @@ class FixedExpense < ApplicationRecord
       .group_by(&:fixed_expense_category_id)
       .map { |_, records| records.first }
   }
+
+  scope :total_expense_for_year, lambda { |start_month|
+    total_expense = 0
+    12.times do |i|
+      total_expense += of_month(start_month + i.months).map(&:amount).sum || 0
+    end
+    total_expense
+  }
+
+  scope :total_of_month, lambda { |month|
+    of_month(month).map(&:amount).sum || 0
+  }
 end

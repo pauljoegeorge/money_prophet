@@ -6,8 +6,10 @@ module Api
       before_action :validate!
 
       def index
-        render json: ExpenseSerializer.new(current_user, date: index_params[:from].to_date.beginning_of_month).to_json,
-               status: :ok
+        forecast = Balance::GetForecastService.new(current_user).execute
+        render json: ExpenseSerializer.new(
+          current_user, date: index_params[:from].to_date.beginning_of_month, forecast: forecast.data
+        ).to_json, status: :ok
       end
 
       def update; end

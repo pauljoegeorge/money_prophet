@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BankBalance < ApplicationRecord
   include Uid
 
@@ -11,7 +13,11 @@ class BankBalance < ApplicationRecord
       user = User.find(user_id)
       last_bank_balance = user.bank_balances.last
       balance = last_bank_balance&.amount || 0
-      start_date = last_bank_balance&.date.present? ? last_bank_balance.date + 1.month : Time.zone.today.beginning_of_month
+      start_date = if last_bank_balance&.date.present?
+                     last_bank_balance.date + 1.month
+                   else
+                     Time.zone.today.beginning_of_month
+                   end
       end_date = date
 
       while start_date <= end_date

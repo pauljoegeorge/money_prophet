@@ -15,6 +15,7 @@ AllCops:
     - "config.ru"
     - "Rakefile"
     - spec/rails_helper.rb
+    - "vender/**/*"
 
 Style/Documentation:
   Enabled: false

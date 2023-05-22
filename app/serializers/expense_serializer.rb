@@ -15,9 +15,7 @@ class ExpenseSerializer < ActiveModel::Serializer
     object.unexpected_expenses.of_month(@date)
   end
 
-  def forecast
-    @forecast
-  end
+  attr_reader :forecast
 
   has_many :fixed_expenses, serializer: FixedExpenseSerializer
   has_many :unexpected_expenses, serializer: UnexpectedExpenseSerializer

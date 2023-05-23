@@ -23,6 +23,7 @@ class User < ApplicationRecord
   attr_accessor :password_digest
 
   include Uqid
+  include InitCategory
 
   validates :name, presence: true
   validates :uid, presence: true, uniqueness: true

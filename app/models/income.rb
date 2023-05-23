@@ -15,6 +15,7 @@
 #
 class Income < ApplicationRecord
   include Uid
+  include BankBalances::Update
 
   belongs_to :income_source
   belongs_to :user

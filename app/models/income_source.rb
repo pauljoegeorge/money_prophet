@@ -14,7 +14,7 @@
 class IncomeSource < ApplicationRecord
   include Uid
 
-  has_many :incomes, dependent: :nullify
+  has_many :incomes, dependent: :destroy
 
   belongs_to :user
 end

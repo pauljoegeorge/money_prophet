@@ -14,7 +14,7 @@
 class FixedExpenseCategory < ApplicationRecord
   include Uid
 
-  has_many :fixed_expenses, dependent: :nullify
+  has_many :fixed_expenses, dependent: :destroy
 
   belongs_to :user
 end

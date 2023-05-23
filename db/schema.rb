@@ -114,7 +114,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_21_003940) do
 
   add_foreign_key "bank_balances", "users"
   add_foreign_key "fixed_expense_categories", "users"
-  add_foreign_key "fixed_expenses", "fixed_expense_categories"
   add_foreign_key "fixed_expenses", "users"
   add_foreign_key "income_sources", "users"
   add_foreign_key "incomes", "income_sources"

@@ -15,6 +15,7 @@
 #
 class UnexpectedExpense < ApplicationRecord
   include Uid
+  include BankBalances::Update
 
   belongs_to :unexpected_expense_category
   belongs_to :user

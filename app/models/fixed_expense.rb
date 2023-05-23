@@ -15,6 +15,7 @@
 #
 class FixedExpense < ApplicationRecord
   include Uid
+  include BankBalances::Update
 
   belongs_to :fixed_expense_category
   belongs_to :user

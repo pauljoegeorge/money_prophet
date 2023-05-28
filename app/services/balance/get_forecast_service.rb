@@ -34,7 +34,7 @@ module Balance
     def set_monthly_savings
       savings = []
       @forecast_months.each do |month|
-        savings << current_user.bank_balances.of_month(month, current_user.id).amount
+        savings << current_user.bank_balance_forecasts.of_month(month).first.amount
       end
       savings
     end

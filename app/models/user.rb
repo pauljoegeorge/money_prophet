@@ -34,7 +34,7 @@ class User < ApplicationRecord
   has_many :unexpected_expense_categories, dependent: :destroy
   has_many :incomes, dependent: :destroy
   has_many :income_sources, dependent: :destroy
-  has_many :bank_balances, dependent: :destroy
+  has_many :bank_balance_forecasts, dependent: :destroy
 
   def self.from_omniauth(response)
     where(uid: response["id"]).first_or_create do |u|
@@ -49,5 +49,31 @@ class User < ApplicationRecord
     income = incomes.total_of_month(date)
     expenses = fixed_expenses.total_of_month(date) + unexpected_expenses.total_of_month(date)
     income - expenses
+  end
+
+  def create_pending_balance_forecasts
+    current_month = Time.zone.now.beginning_of_month
+    end_month = current_month + 12.months
+    return if bank_balance_forecasts.find_by(date: end_month)
+
+    init_pending_balance_forecasts(current_month, end_month)
+  end
+
+  private
+
+  def init_pending_balance_forecasts(current_month, end_month)
+    last_available_forecast = bank_balance_forecasts.last
+    last_balance = last_available_forecast&.amount || 0
+    start_date = if last_available_forecast&.date.present?
+                   last_available_forecast.date + 1.month
+                 else
+                   current_month
+                 end
+
+    while start_date <= end_month
+      last_balance += savings_of_month(start_date)
+      bank_balance_forecasts.create(amount: last_balance, date: start_date)
+      start_date = start_date.next_month.at_beginning_of_month
+    end
   end
 end

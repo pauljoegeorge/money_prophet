@@ -1,6 +1,6 @@
 class CreateTableBankBalances < ActiveRecord::Migration[7.0]
   def up
-    create_table :bank_balances do |t|
+    create_table :bank_balance_forecasts do |t|
       t.string :uid
       t.date :date, null: false
       t.integer :amount, null: false, default: 0
@@ -14,6 +14,6 @@ class CreateTableBankBalances < ActiveRecord::Migration[7.0]
   end
 
   def down
-    drop_table :bank_balances
+    drop_table :bank_balance_forecasts
   end
 end

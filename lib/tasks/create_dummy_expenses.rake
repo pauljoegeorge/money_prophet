@@ -1,6 +1,6 @@
 # RUN: rake "user:create_expenses[#{user_id}]"
 namespace :user do
-  desc "create dummy expenses"
+  desc "==== FOR V2.0 create dummy expenses"
   task :create_expenses, [:user_id] => :environment do |a, args|
     user = User.find(args[:user_id])
     next if user.blank?

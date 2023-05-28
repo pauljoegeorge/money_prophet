@@ -10,17 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_21_003940) do
-  create_table "bank_balances", charset: "utf8mb4", force: :cascade do |t|
+ActiveRecord::Schema[7.0].define(version: 2023_05_26_092034) do
+  create_table "bank_balance_forecasts", charset: "utf8mb4", force: :cascade do |t|
     t.string "uid"
     t.date "date", null: false
     t.integer "amount", default: 0, null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["date", "user_id"], name: "index_bank_balances_on_date_and_user_id", unique: true
-    t.index ["uid"], name: "index_bank_balances_on_uid", unique: true
-    t.index ["user_id"], name: "index_bank_balances_on_user_id"
+    t.index ["date", "user_id"], name: "index_bank_balance_forecasts_on_date_and_user_id", unique: true
+    t.index ["uid"], name: "index_bank_balance_forecasts_on_uid", unique: true
+    t.index ["user_id"], name: "index_bank_balance_forecasts_on_user_id"
   end
 
   create_table "fixed_expense_categories", charset: "utf8mb4", force: :cascade do |t|
@@ -112,7 +112,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_21_003940) do
     t.index ["uid"], name: "index_users_on_uid", unique: true
   end
 
-  add_foreign_key "bank_balances", "users"
+  add_foreign_key "bank_balance_forecasts", "users"
   add_foreign_key "fixed_expense_categories", "users"
   add_foreign_key "fixed_expenses", "users"
   add_foreign_key "income_sources", "users"

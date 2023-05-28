@@ -21,3 +21,7 @@ Style/Documentation:
   Enabled: false
 StringLiterals:
   EnforcedStyle: double_quotes
+Metrics/MethodLength:
+  Enabled: true
+  CountComments: false
+  Max: 20

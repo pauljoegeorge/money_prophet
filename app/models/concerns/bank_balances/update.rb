@@ -18,9 +18,8 @@ module BankBalances
       return if self_date < current_month
 
       forecast = user.bank_balance_forecasts.of_month(current_month - 1.month).first
-      return if forecast.blank?
 
-      update_forecasts(current_month, forecast.amount.presence || 0)
+      update_forecasts(current_month, forecast&.amount&.presence || 0)
     end
 
     def update_forecasts(current_month, initial_balance)

@@ -17,7 +17,7 @@ module BankBalances
       self_date = instance_of?(::UnexpectedExpense) ? apply_in : apply_from
       return if self_date < current_month
 
-      forecast = user.bank_balance_forecasts.of_month(current_month).first
+      forecast = user.bank_balance_forecasts.of_month(current_month - 1.month).first
       return if forecast.blank?
 
       update_forecasts(current_month, forecast.amount.presence || 0)

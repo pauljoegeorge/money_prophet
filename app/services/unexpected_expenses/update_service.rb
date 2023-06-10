@@ -24,7 +24,7 @@ module UnexpectedExpenses
       if unexpected_expense.present?
         unexpected_expense.update(amount: amount)
       else
-        current_user.fixed_expenses.create(
+        current_user.unexpected_expenses.create(
           apply_in: from,
           amount: amount,
           unexpected_expense_category: current_user.unexpected_expense_categories.first

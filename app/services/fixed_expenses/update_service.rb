@@ -20,7 +20,7 @@ module FixedExpenses
     private
 
     def update_fixed_expense
-      fixed_expense = current_user.fixed_expenses.of_month(from).first
+      fixed_expense = current_user.fixed_expenses.find_by(apply_from: from)
       if fixed_expense.present?
         fixed_expense.update(amount: amount)
       else

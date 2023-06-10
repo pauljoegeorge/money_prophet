@@ -20,7 +20,7 @@ module Incomes
     private
 
     def update_incomes
-      income = current_user.incomes.of_month(from).first
+      income = current_user.incomes.find_by(apply_from: from)
       if income.present?
         income.update(amount: amount)
       else

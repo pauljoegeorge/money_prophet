@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_26_092034) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_09_073522) do
   create_table "bank_balance_forecasts", charset: "utf8mb4", force: :cascade do |t|
     t.string "uid"
     t.date "date", null: false
@@ -112,6 +112,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_26_092034) do
     t.index ["uid"], name: "index_users_on_uid", unique: true
   end
 
+  create_table "wishlists", charset: "utf8mb4", force: :cascade do |t|
+    t.string "uid"
+    t.string "product_name", default: "", null: false
+    t.text "product_url"
+    t.integer "price", default: 0, null: false
+    t.date "purchased_on"
+    t.integer "status", default: 0, null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["uid"], name: "index_wishlists_on_uid", unique: true
+    t.index ["user_id"], name: "index_wishlists_on_user_id"
+  end
+
   add_foreign_key "bank_balance_forecasts", "users"
   add_foreign_key "fixed_expense_categories", "users"
   add_foreign_key "fixed_expenses", "users"
@@ -121,4 +135,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_26_092034) do
   add_foreign_key "unexpected_expense_categories", "users"
   add_foreign_key "unexpected_expenses", "unexpected_expense_categories"
   add_foreign_key "unexpected_expenses", "users"
+  add_foreign_key "wishlists", "users"
 end

@@ -35,6 +35,7 @@ class User < ApplicationRecord
   has_many :incomes, dependent: :destroy
   has_many :income_sources, dependent: :destroy
   has_many :bank_balance_forecasts, dependent: :destroy
+  has_many :wishlist_items, class_name: "Wishlist", dependent: :destroy
 
   def self.from_omniauth(response)
     where(uid: response["id"]).first_or_create do |u|
